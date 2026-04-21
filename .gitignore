@@ -78,6 +78,15 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Project data directory (never committed — keep only .gitkeep placeholders)
+data/
+!data/
+!data/README.md
+!data/raw/
+!data/raw/.gitkeep
+!data/processed/
+!data/processed/.gitkeep
+
 # IPython
 profile_default/
 ipython_config.py
