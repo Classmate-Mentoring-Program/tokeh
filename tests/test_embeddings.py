@@ -1,12 +1,10 @@
-"""Unit tests for tokeh.embeddings."""
-
-import pytest
+"""Tests unitaires pour tokeh.embeddings."""
 
 from tokeh.embeddings import build_vocab, one_hot_encode, tfidf_vectorize
 
 
 class TestBuildVocab:
-    """Tests for :func:`tokeh.embeddings.build_vocab`."""
+    """Tests pour :func:`tokeh.embeddings.build_vocab`."""
 
     def test_contains_unk(self):
         vocab = build_vocab([["hello", "world"]])
@@ -36,7 +34,7 @@ class TestBuildVocab:
 
 
 class TestOneHotEncode:
-    """Tests for :func:`tokeh.embeddings.one_hot_encode`."""
+    """Tests pour :func:`tokeh.embeddings.one_hot_encode`."""
 
     def setup_method(self):
         self.vocab = {"<UNK>": 0, "hello": 1, "world": 2}
@@ -57,7 +55,7 @@ class TestOneHotEncode:
 
 
 class TestTfidfVectorize:
-    """Tests for :func:`tokeh.embeddings.tfidf_vectorize`."""
+    """Tests pour :func:`tokeh.embeddings.tfidf_vectorize`."""
 
     def setup_method(self):
         self.vocab = {"<UNK>": 0, "hello": 1, "world": 2}

@@ -1,19 +1,21 @@
 # data/
 
-This directory holds datasets used by the tokeh project and is **not**
-tracked in version control (see `.gitignore`).
+Ce répertoire contient les jeux de données utilisés par le projet tokeh et
+n'est **pas** versionné dans git (voir `.gitignore`).
 
-## Sub-directories
+## Sous-répertoires
 
-| Directory   | Purpose |
-|-------------|---------|
-| `raw/`      | Original, unmodified source data (CSV, JSON, plain text, etc.). |
-| `processed/`| Cleaned and transformed data ready for modelling. |
+| Répertoire  | Rôle |
+|-------------|------|
+| `raw/`      | Données sources originales et non modifiées (CSV, JSON, texte brut, etc.). |
+| `processed/`| Données nettoyées et transformées, prêtes pour la modélisation. |
 
-## Usage
+## Utilisation
 
-1. Download or place your raw data files inside `raw/`.
-2. Run the appropriate preprocessing script (see `Makefile`) to populate `processed/`.
+1. Téléchargez ou placez vos fichiers de données brutes dans `raw/`.
+2. Exécutez le script de prétraitement approprié (voir `Makefile`) pour
+   remplir `processed/`.
 
-> **Note**: Never commit actual data files.  Add large files to `.gitignore`
-> or use [DVC](https://dvc.org/) for data versioning.
+> **Note** : Ne commitez jamais de fichiers de données réels.  Ajoutez les
+> fichiers volumineux dans `.gitignore` ou utilisez
+> [DVC](https://dvc.org/) pour le versionnement des données.

@@ -1,10 +1,11 @@
-# Tokeh Documentation
+# Documentation Tokeh
 
-Welcome to the **Tokeh** NLP project documentation.
+Bienvenue dans la documentation du projet NLP **Tokeh**.
 
-Tokeh is named after the *Calao* bird (hornbill), celebrated for its loud,
-distinctive call across West Africa.  This project provides a clean, modular
-foundation for experimenting with natural language processing in Python.
+Tokeh est nommé d'après le *Calao* (hornbill), célèbre pour son cri puissant
+et distinctif à travers l'Afrique de l'Ouest.  Ce projet fournit une base
+modulaire et propre pour expérimenter le traitement du langage naturel en
+Python.
 
 ---
 
@@ -12,65 +13,61 @@ foundation for experimenting with natural language processing in Python.
 
 ### `tokeh.preprocessing`
 
-Functions for cleaning and tokenising raw text.
+Fonctions de nettoyage et de tokenisation du texte brut.
 
-| Function | Description |
+| Fonction | Description |
 |---|---|
-| `clean_text(text, ...)` | Lower-case, remove punctuation, collapse whitespace. |
-| `simple_tokenize(text)` | Split on whitespace. |
-| `remove_stopwords(tokens, stopwords)` | Filter stop-words from a token list. |
+| `clean_text(text, ...)` | Minuscules, suppression ponctuation, normalisation des espaces. |
+| `simple_tokenize(text)` | Découpage sur les espaces. |
+| `remove_stopwords(tokens, stopwords)` | Filtrage des mots vides dans une liste de tokens. |
 
 ### `tokeh.embeddings`
 
-Utilities for building vector representations of text.
+Utilitaires de représentation vectorielle du texte.
 
-| Function | Description |
+| Fonction | Description |
 |---|---|
-| `build_vocab(corpus, min_freq)` | Build a word-to-index vocabulary. |
-| `one_hot_encode(token, vocab)` | One-hot vector for a single token. |
-| `tfidf_vectorize(corpus, vocab)` | TF-IDF matrix for a tokenised corpus. |
+| `build_vocab(corpus, min_freq)` | Construction d'un vocabulaire mot→indice. |
+| `one_hot_encode(token, vocab)` | Vecteur one-hot pour un token donné. |
+| `tfidf_vectorize(corpus, vocab)` | Matrice TF-IDF pour un corpus tokenisé. |
 
 ### `tokeh.models.base`
 
-Abstract base class for all tokeh NLP models.
+Classe de base pour tous les modèles NLP de tokeh.
 
-| Class / Method | Description |
+| Classe | Description |
 |---|---|
-| `BaseModel` | Abstract parent class. |
-| `BaseModel.fit(X, y)` | Train the model. |
-| `BaseModel.predict(X)` | Generate predictions. |
-| `BaseModel.save(path)` | Persist model to disk. |
-| `BaseModel.load(path)` | Restore model from disk. |
+| `BaseModel` | Classe parente de base. |
 
 ### `tokeh.utils`
 
-Shared helpers.
+Utilitaires partagés.
 
-| Function | Description |
+| Fonction | Description |
 |---|---|
-| `get_logger(name, level)` | Create a named Python logger. |
-| `ensure_dir(path)` | Create a directory if it does not exist. |
-| `read_text_file(path)` | Read a text file to a string. |
+| `get_logger(name, level)` | Crée un logger Python nommé. |
+| `ensure_dir(path)` | Crée un répertoire s'il n'existe pas. |
+| `read_text_file(path)` | Lit un fichier texte en chaîne. |
 
 ---
 
-## Quick Start
+## Démarrage rapide
 
 ```python
 from tokeh.preprocessing import clean_text, simple_tokenize, remove_stopwords
 from tokeh.embeddings import build_vocab, tfidf_vectorize
 
-tokens = remove_stopwords(simple_tokenize(clean_text("Hello, NLP world!")))
+tokens = remove_stopwords(simple_tokenize(clean_text("Bonjour, monde NLP !")))
 vocab  = build_vocab([tokens])
 matrix = tfidf_vectorize([tokens], vocab)
 ```
 
 ---
 
-## Contributing
+## Contribuer
 
-1. Fork the repository and create a feature branch.
-2. Run `make install` to install all dependencies.
-3. Write tests in `tests/`, then run `make test`.
-4. Lint with `make lint` and format with `make format`.
-5. Open a pull request.
+1. Forker le dépôt et créer une branche de fonctionnalité.
+2. Exécuter `make install` pour installer toutes les dépendances.
+3. Écrire les tests dans `tests/`, puis lancer `make test`.
+4. Vérifier le style avec `make lint` et formater avec `make format`.
+5. Ouvrir une pull request.

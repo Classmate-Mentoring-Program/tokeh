@@ -1,9 +1,9 @@
-"""Text cleaning and tokenisation utilities.
+"""Utilitaires de nettoyage et de tokenisation du texte.
 
-This module provides functions to clean raw text (lowercasing, punctuation
-removal, etc.) and to split text into tokens.  It is intentionally kept
-dependency-light so that it works without optional heavy libraries such as
-spaCy or NLTK being installed.
+Ce module fournit des fonctions pour nettoyer le texte brut (mise en minuscules,
+suppression de la ponctuation, etc.) et pour découper le texte en tokens.
+Il est volontairement léger en dépendances afin de fonctionner sans les
+bibliothèques optionnelles telles que spaCy ou NLTK.
 """
 
 from __future__ import annotations
@@ -13,55 +13,55 @@ import string
 
 
 def clean_text(text: str, *, lower: bool = True, remove_punctuation: bool = True) -> str:
-    """Clean a raw text string.
+    """Nettoie une chaîne de texte brut.
 
     Args:
-        text: The raw input text.
-        lower: If ``True`` (default) convert the text to lower-case.
-        remove_punctuation: If ``True`` (default) strip punctuation characters.
+        text: Le texte brut en entrée.
+        lower: Si ``True`` (défaut), convertit le texte en minuscules.
+        remove_punctuation: Si ``True`` (défaut), supprime les caractères de ponctuation.
 
     Returns:
-        The cleaned text string.
+        La chaîne de texte nettoyée.
 
     Example:
-        >>> clean_text("Hello, World!")
-        'hello world'
+        >>> clean_text("Bonjour, le Monde !")
+        'bonjour le monde '
     """
     if lower:
         text = text.lower()
     if remove_punctuation:
         text = text.translate(str.maketrans("", "", string.punctuation))
-    # Collapse whitespace
+    # Réduction des espaces multiples
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
 
 def simple_tokenize(text: str) -> list[str]:
-    """Split a (pre-cleaned) text string into whitespace-separated tokens.
+    """Découpe une chaîne de texte (pré-nettoyée) en tokens séparés par des espaces.
 
     Args:
-        text: The text to tokenise.
+        text: Le texte à tokeniser.
 
     Returns:
-        A list of token strings.
+        Une liste de chaînes de tokens.
 
     Example:
-        >>> simple_tokenize("hello world")
-        ['hello', 'world']
+        >>> simple_tokenize("bonjour monde")
+        ['bonjour', 'monde']
     """
     return text.split()
 
 
 def remove_stopwords(tokens: list[str], stopwords: set[str] | None = None) -> list[str]:
-    """Remove stop-words from a list of tokens.
+    """Supprime les mots vides d'une liste de tokens.
 
     Args:
-        tokens: The input list of tokens.
-        stopwords: A set of stop-word strings to remove.  If ``None`` a small
-            built-in English stop-word list is used.
+        tokens: La liste de tokens en entrée.
+        stopwords: Un ensemble de mots vides à supprimer.  Si ``None``, une
+            petite liste de mots vides anglais intégrée est utilisée.
 
     Returns:
-        A filtered list of tokens with stop-words removed.
+        Une liste filtrée de tokens sans les mots vides.
 
     Example:
         >>> remove_stopwords(["the", "quick", "brown", "fox"])

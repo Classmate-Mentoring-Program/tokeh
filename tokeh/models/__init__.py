@@ -1,5 +1,5 @@
-"""Models sub-package for tokeh.
+"""Sous-paquet des modèles pour tokeh.
 
-This package contains the base model abstractions and concrete NLP model
-implementations used throughout the tokeh project.
+Ce paquet contient les abstractions de modèles de base utilisées dans
+l'ensemble du projet tokeh.
 """

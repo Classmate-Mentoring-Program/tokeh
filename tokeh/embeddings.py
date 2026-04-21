@@ -1,9 +1,9 @@
-"""Vector representation utilities (embeddings).
+"""Utilitaires de représentation vectorielle (embeddings).
 
-This module provides helpers for creating simple word-level and sentence-level
-vector representations of text. For more advanced modeling, see the
-:mod:`tokeh.models` sub-package for core model abstractions, or use a
-dedicated transformer library for production encoder workloads.
+Ce module fournit des helpers pour créer des représentations vectorielles
+simples au niveau du mot et de la phrase.  Pour des usages plus avancés,
+consultez le sous-paquet :mod:`tokeh.models` pour les abstractions de modèles
+de base.
 """
 
 from __future__ import annotations
@@ -16,22 +16,22 @@ import math
 def build_vocab(
     corpus: list[list[str]], min_freq: int = 1
 ) -> dict[str, int]:
-    """Build a word-to-index vocabulary from a tokenised corpus.
+    """Construit un vocabulaire mot→indice à partir d'un corpus tokenisé.
 
     Args:
-        corpus: A list of tokenised documents, where each document is a list
-            of string tokens.
-        min_freq: Minimum token frequency to be included in the vocabulary.
-            Defaults to ``1``.
+        corpus: Une liste de documents tokenisés, où chaque document est une
+            liste de tokens (chaînes).
+        min_freq: Fréquence minimale d'un token pour être inclus dans le
+            vocabulaire.  Défaut : ``1``.
 
     Returns:
-        A dictionary mapping each token to a unique integer index, starting
-        at ``0``.  The special ``"<UNK>"`` token is always included at index
-        ``0``.
+        Un dictionnaire associant chaque token à un indice entier unique
+        démarrant à ``0``.  Le token spécial ``"<UNK>"`` est toujours inclus
+        à l'indice ``0``.
 
     Example:
-        >>> build_vocab([["hello", "world"], ["hello"]])
-        {'<UNK>': 0, 'hello': 1, 'world': 2}
+        >>> build_vocab([["bonjour", "monde"], ["bonjour"]])
+        {'<UNK>': 0, 'bonjour': 1, 'monde': 2}
     """
     counts: Counter[str] = Counter(tok for doc in corpus for tok in doc)
     vocab: dict[str, int] = {"<UNK>": 0}
@@ -42,20 +42,20 @@ def build_vocab(
 
 
 def one_hot_encode(token: str, vocab: dict[str, int]) -> list[int]:
-    """Return a one-hot vector for *token* using *vocab*.
+    """Retourne un vecteur one-hot pour *token* selon *vocab*.
 
     Args:
-        token: The token to encode.
-        vocab: A word-to-index mapping produced by :func:`build_vocab`.
+        token: Le token à encoder.
+        vocab: Un dictionnaire mot→indice produit par :func:`build_vocab`.
 
     Returns:
-        A list of integers of length ``len(vocab)`` with a ``1`` at the index
-        corresponding to *token* (or the ``"<UNK>"`` index if *token* is not
-        in the vocabulary) and ``0`` elsewhere.
+        Une liste d'entiers de longueur ``len(vocab)`` avec un ``1`` à
+        l'indice correspondant à *token* (ou l'indice ``"<UNK>"`` si *token*
+        est absent du vocabulaire) et ``0`` ailleurs.
 
     Example:
-        >>> vocab = {"<UNK>": 0, "hello": 1, "world": 2}
-        >>> one_hot_encode("hello", vocab)
+        >>> vocab = {"<UNK>": 0, "bonjour": 1, "monde": 2}
+        >>> one_hot_encode("bonjour", vocab)
         [0, 1, 0]
     """
     vec = [0] * len(vocab)
@@ -67,26 +67,26 @@ def one_hot_encode(token: str, vocab: dict[str, int]) -> list[int]:
 def tfidf_vectorize(
     corpus: list[list[str]], vocab: dict[str, int]
 ) -> list[list[float]]:
-    """Compute a simple TF-IDF matrix for a tokenised corpus.
+    """Calcule une matrice TF-IDF simple pour un corpus tokenisé.
 
     Args:
-        corpus: A list of tokenised documents.
-        vocab: A word-to-index mapping (e.g. from :func:`build_vocab`).
+        corpus: Une liste de documents tokenisés.
+        vocab: Un dictionnaire mot→indice (p. ex. issu de :func:`build_vocab`).
 
     Returns:
-        A 2-D list of shape ``(num_docs, vocab_size)`` containing TF-IDF
-        scores.
+        Une liste 2D de forme ``(nb_docs, taille_vocab)`` contenant les scores
+        TF-IDF.
 
     Example:
-        >>> vocab = {"<UNK>": 0, "hello": 1, "world": 2}
-        >>> tfidf_vectorize([["hello", "world"], ["hello"]], vocab)
+        >>> vocab = {"<UNK>": 0, "bonjour": 1, "monde": 2}
+        >>> tfidf_vectorize([["bonjour", "monde"], ["bonjour"]], vocab)
         [[...], [...]]
     """
     n_docs = len(corpus)
     vocab_size = len(vocab)
-    matrix: List[List[float]] = []
+    matrix: list[list[float]] = []
 
-    # Document frequency for each token
+    # Fréquence documentaire pour chaque token
     df: Counter[int] = Counter()
     for doc in corpus:
         for idx in {vocab.get(tok, 0) for tok in doc}:

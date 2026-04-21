@@ -1,51 +1,53 @@
 # Tokeh
 
-> **Tokeh** is a concrete NLP learning project named after the *Calao* bird
-> (hornbill), known for its loud, distinctive call across West Africa.  
-> The project focuses on clean, well-documented NLP pipelines — from raw text
-> to trained models — with an emphasis on reproducibility and best practices.
+> **Tokeh** est un projet d'apprentissage NLP concret, nommé d'après le *Calao*
+> (hornbill), oiseau célèbre pour son cri puissant et distinctif à travers
+> l'Afrique de l'Ouest.  
+> Le projet met l'accent sur des pipelines NLP propres et bien documentés — du
+> texte brut jusqu'aux modèles entraînés — avec une attention particulière à la
+> reproductibilité et aux bonnes pratiques.
 
 ---
 
-## Project Goal
+## Objectif du projet
 
-Build a collection of NLP utilities and experiments that demonstrate
-end-to-end natural language processing:
+Construire une collection d'utilitaires et d'expériences NLP illustrant un
+traitement du langage naturel de bout en bout :
 
-- **Text preprocessing** – cleaning, tokenisation, stop-word removal.
-- **Embeddings** – vocabulary construction, one-hot encoding, TF-IDF.
-- **Modelling** – a clean base-class hierarchy for pluggable NLP models.
+- **Prétraitement du texte** – nettoyage, tokenisation, suppression des mots vides.
+- **Embeddings** – construction du vocabulaire, encodage one-hot, TF-IDF.
+- **Modélisation** – une hiérarchie de classes de base propre pour des modèles NLP modulaires.
 
 ---
 
-## Install
+## Installation
 
 ```bash
-# 1. Clone the repository
+# 1. Cloner le dépôt
 git clone https://github.com/Classmate-Mentoring-Program/tokeh.git
 cd tokeh
 
-# 2. Create and activate a virtual environment (Python 3.11+)
+# 2. Créer et activer un environnement virtuel (Python 3.11+)
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+source .venv/bin/activate   # Windows : .venv\Scripts\activate
 
-# 3. Install the project and its dependencies
+# 3. Installer le projet et ses dépendances
 make install
 ```
 
 ---
 
-## Usage Example
+## Exemple d'utilisation
 
 ```python
 from tokeh.preprocessing import clean_text, simple_tokenize, remove_stopwords
 from tokeh.embeddings import build_vocab, tfidf_vectorize
 
-# --- Preprocessing -------------------------------------------------------
+# --- Prétraitement -------------------------------------------------------
 raw = "The quick brown fox jumps over the lazy dog."
-cleaned = clean_text(raw)          # 'quick brown fox jumps lazy dog'
-tokens  = simple_tokenize(cleaned) # ['quick', 'brown', 'fox', ...]
-tokens  = remove_stopwords(tokens) # stop-words removed
+cleaned = clean_text(raw)          # 'the quick brown fox jumps over the lazy dog'
+tokens  = simple_tokenize(cleaned) # ['the', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+tokens  = remove_stopwords(tokens) # ['quick', 'brown', 'fox', 'jumps', 'lazy', 'dog']
 
 # --- Embeddings ----------------------------------------------------------
 corpus = [tokens, simple_tokenize(clean_text("NLP is fun"))]
@@ -56,28 +58,28 @@ print(matrix)
 
 ---
 
-## Project Structure
+## Structure du projet
 
 ```
 tokeh/
-├── tokeh/                  # Source package
+├── tokeh/                  # Paquet source
 │   ├── __init__.py
-│   ├── preprocessing.py     # Text cleaning, tokenisation
-│   ├── embeddings.py        # Vector representations
+│   ├── preprocessing.py     # Nettoyage du texte, tokenisation
+│   ├── embeddings.py        # Représentations vectorielles
 │   ├── models/
 │   │   ├── __init__.py
-│   │   └── base.py          # Base model class
+│   │   └── base.py          # Classe de base des modèles
 │   └── utils.py
 │
-├── notebooks/              # Jupyter exploration notebooks
+├── notebooks/              # Notebooks Jupyter d'exploration
 │   └── 00_getting_started.ipynb
 │
-├── data/                   # Never committed (see .gitignore)
+├── data/                   # Non versionné (voir .gitignore)
 │   ├── raw/
 │   ├── processed/
 │   └── README.md
 │
-├── tests/                  # Unit tests
+├── tests/                  # Tests unitaires
 │   ├── __init__.py
 │   ├── test_preprocessing.py
 │   └── test_embeddings.py
@@ -93,11 +95,11 @@ tokeh/
 
 ---
 
-## Development
+## Développement
 
 ```bash
-make test      # Run pytest
-make lint      # Run ruff linter
-make format    # Run black formatter
-make notebook  # Launch Jupyter notebook server
+make test      # Lancer pytest
+make lint      # Lancer le linter ruff
+make format    # Formater avec black
+make notebook  # Démarrer le serveur Jupyter
 ```

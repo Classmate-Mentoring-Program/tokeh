@@ -1,7 +1,8 @@
-"""General-purpose utility helpers for the tokeh package.
+"""Utilitaires partagés pour le paquet tokeh.
 
-This module provides shared helpers — logging configuration, file I/O, and
-other small conveniences — used across the rest of the tokeh codebase.
+Ce module fournit des helpers communs — configuration des logs, entrées/sorties
+de fichiers et autres petites commodités — utilisés dans l'ensemble du code
+tokeh.
 """
 
 from __future__ import annotations
@@ -11,14 +12,14 @@ from pathlib import Path
 
 
 def get_logger(name: str, level: int = logging.INFO) -> logging.Logger:
-    """Create and return a named logger.
+    """Crée et retourne un logger nommé.
 
     Args:
-        name: The logger name, typically ``__name__`` of the calling module.
-        level: The minimum logging level.  Defaults to ``logging.INFO``.
+        name: Le nom du logger, typiquement ``__name__`` du module appelant.
+        level: Le niveau de journalisation minimum.  Défaut : ``logging.INFO``.
 
     Returns:
-        A configured :class:`logging.Logger` instance.
+        Une instance :class:`logging.Logger` configurée.
     """
     logger = logging.getLogger(name)
     if not logger.handlers:
@@ -32,13 +33,13 @@ def get_logger(name: str, level: int = logging.INFO) -> logging.Logger:
 
 
 def ensure_dir(path: str | Path) -> Path:
-    """Create a directory (and any missing parents) if it does not exist.
+    """Crée un répertoire (et ses parents manquants) s'il n'existe pas.
 
     Args:
-        path: The directory path to create.
+        path: Le chemin du répertoire à créer.
 
     Returns:
-        The resolved :class:`pathlib.Path` of the directory.
+        Le :class:`pathlib.Path` du répertoire.
     """
     directory = Path(path)
     directory.mkdir(parents=True, exist_ok=True)
@@ -46,16 +47,16 @@ def ensure_dir(path: str | Path) -> Path:
 
 
 def read_text_file(path: str | Path, encoding: str = "utf-8") -> str:
-    """Read and return the entire contents of a text file.
+    """Lit et retourne le contenu complet d'un fichier texte.
 
     Args:
-        path: Path to the file.
-        encoding: File encoding.  Defaults to ``"utf-8"``.
+        path: Chemin vers le fichier.
+        encoding: Encodage du fichier.  Défaut : ``"utf-8"``.
 
     Returns:
-        The file contents as a plain string.
+        Le contenu du fichier sous forme de chaîne.
 
     Raises:
-        FileNotFoundError: If *path* does not exist.
+        FileNotFoundError: Si *path* n'existe pas.
     """
     return Path(path).read_text(encoding=encoding)

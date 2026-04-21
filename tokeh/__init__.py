@@ -1,8 +1,9 @@
-"""Tokeh: A concrete NLP learning project.
+"""Tokeh : un projet d'apprentissage NLP concret.
 
-Named after the Calao bird (hornbill), known for its loud, distinctive call
-across West Africa.  This package provides utilities for text preprocessing,
-word embeddings, and model training with clean, well-documented code.
+Nommé d'après le Calao (hornbill), oiseau connu pour son cri puissant et
+distinctif à travers l'Afrique de l'Ouest.  Ce paquet fournit des utilitaires
+de prétraitement de texte, de représentations vectorielles et d'entraînement
+de modèles, avec un code propre et bien documenté.
 """
 
 __version__ = "0.1.0"

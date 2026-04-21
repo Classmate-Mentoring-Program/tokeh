@@ -1,12 +1,10 @@
-"""Unit tests for tokeh.preprocessing."""
-
-import pytest
+"""Tests unitaires pour tokeh.preprocessing."""
 
 from tokeh.preprocessing import clean_text, remove_stopwords, simple_tokenize
 
 
 class TestCleanText:
-    """Tests for :func:`tokeh.preprocessing.clean_text`."""
+    """Tests pour :func:`tokeh.preprocessing.clean_text`."""
 
     def test_lowercase_by_default(self):
         assert clean_text("Hello World") == "hello world"
@@ -32,7 +30,7 @@ class TestCleanText:
 
 
 class TestSimpleTokenize:
-    """Tests for :func:`tokeh.preprocessing.simple_tokenize`."""
+    """Tests pour :func:`tokeh.preprocessing.simple_tokenize`."""
 
     def test_basic_split(self):
         assert simple_tokenize("hello world") == ["hello", "world"]
@@ -45,7 +43,7 @@ class TestSimpleTokenize:
 
 
 class TestRemoveStopwords:
-    """Tests for :func:`tokeh.preprocessing.remove_stopwords`."""
+    """Tests pour :func:`tokeh.preprocessing.remove_stopwords`."""
 
     def test_removes_default_stopwords(self):
         tokens = ["the", "quick", "brown", "fox"]
