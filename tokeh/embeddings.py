@@ -1,8 +1,9 @@
 """Vector representation utilities (embeddings).
 
 This module provides helpers for creating simple word-level and sentence-level
-vector representations of text.  For production workloads consider using the
-:mod:`tokeh.models` sub-package which wraps transformer-based encoders.
+vector representations of text. For more advanced modeling, see the
+:mod:`tokeh.models` sub-package for core model abstractions, or use a
+dedicated transformer library for production encoder workloads.
 """
 
 from __future__ import annotations
