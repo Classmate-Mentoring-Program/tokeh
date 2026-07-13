@@ -33,6 +33,10 @@ dependencies = [
   "jax>=0.10.2",
   "flax>=0.12.7",
   "transformers>=5.13.1",
+  "datasets>=5.0.0",
+  "tqdm>=4.68.4",
+  "matplotlib>=3.11.0",
+  "loguru>=0.7.3",
 ]
 
 [project.optional-dependencies]
