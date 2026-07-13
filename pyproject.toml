@@ -3,14 +3,14 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tokeh"
+name = "xevi"
 version = "0.1.0"
-description = "A concrete NLP learning project — named after the Calao bird (hornbill)."
+description = "A NLP project"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
 authors = [
-  { name = "Classmate Mentoring Program" },
+  { name = "Rosas Behoundja" },
 ]
 keywords = ["nlp", "natural-language-processing", "machine-learning"]
 classifiers = [
@@ -27,11 +27,12 @@ classifiers = [
 dependencies = [
   "nltk>=3.8",
   "spacy>=3.7",
-  "transformers>=4.40",
   "scikit-learn>=1.4",
-  "torch>=2.2",
   "pandas>=2.2",
   "jupyter>=1.0",
+  "jax>=0.10.2",
+  "flax>=0.12.7",
+  "transformers>=5.13.1",
 ]
 
 [project.optional-dependencies]
@@ -44,7 +45,7 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["tokeh*"]
+include = ["xevi*"]
 
 # ---------------------------------------------------------------------------
 # Tool configuration
