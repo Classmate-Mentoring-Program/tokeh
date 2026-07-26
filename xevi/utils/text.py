@@ -3,13 +3,19 @@ import string
 import unicodedata
 
 PUNC_ISOLATE_RE = re.compile(r"([?.!,¿])")
-SPACES_RE = re.compile(r'\s+')
-ALPHA_RE = re.compile(r'^[^\d_\W]+$', re.UNICODE)
+SPACES_RE = re.compile(r"\s+")
+ALPHA_RE = re.compile(r"^[^\d_\W]+$", re.UNICODE)
 QUOTES_MAP = str.maketrans({"”": None, "“": None, "«": None, "»": None, "’": "'"})
 PUNC_REMOVE_MAP = str.maketrans({char: None for char in string.punctuation})
 
 
-def preprocess(w: str, isolate_punc: bool = True, remove_punc: bool = False, normalize_quotes: bool = True, only_alphabetic: bool = False) -> str:
+def preprocess(
+    w: str,
+    isolate_punc: bool = True,
+    remove_punc: bool = False,
+    normalize_quotes: bool = True,
+    only_alphabetic: bool = False,
+) -> str:
     """Preprocess and clean text with customizable options.
 
     Args:
@@ -23,16 +29,19 @@ def preprocess(w: str, isolate_punc: bool = True, remove_punc: bool = False, nor
     Returns:
         str: The preprocessed text.
     """
-    if not w: return ""
+    if not w:
+        return ""
 
-    l = unicodedata.normalize("NFC", w)
-
-    if normalize_quotes: w = w.translate(QUOTES_MAP)
-    if remove_punc: w = w.translate(PUNC_REMOVE_MAP)
-    if isolate_punc: w = PUNC_ISOLATE_RE.sub(r" \1 ", w)
+    if normalize_quotes:
+        w = w.translate(QUOTES_MAP)
+    if remove_punc:
+        w = w.translate(PUNC_REMOVE_MAP)
+    if isolate_punc:
+        w = PUNC_ISOLATE_RE.sub(r" \1 ", w)
     # delete large spaces
-    w = SPACES_RE.sub(' ', w).strip()
-    if only_alphabetic: w = ' '.join(word for word in w.split() if ALPHA_RE.match(word))
+    w = SPACES_RE.sub(" ", w).strip()
+    if only_alphabetic:
+        w = " ".join(word for word in w.split() if ALPHA_RE.match(word))
 
     return w
 
@@ -55,7 +64,8 @@ def strip_tones(w: str) -> str:
     Returns:
         str: The stripped string in NFC normalized form.
     """
-    if not w: return ""
+    if not w:
+        return ""
 
     s = unicodedata.normalize("NFD", w)
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")

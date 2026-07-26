@@ -41,7 +41,9 @@ class WEBTokenizer(TokenizerI):
         lower (bool): If True, lowercase the input text before processing. Default: False.
     """
 
-    def __init__(self, lexicon: WEBLexicon, *, sep: str = '_', lower: bool = True, tones: bool = False):
+    def __init__(
+        self, lexicon: WEBLexicon, *, sep: str = "_", lower: bool = True, tones: bool = False
+    ):
         self.tones = tones
         self.lexicon = lexicon
         self.sep = sep
@@ -49,7 +51,8 @@ class WEBTokenizer(TokenizerI):
 
     def tokenize(self, text: str) -> list[str]:
         """Tokenize a string into a list of words and multi-word expressions."""
-        if not text: return []
+        if not text:
+            return []
 
         if self.lower:
             text = text.lower()
@@ -57,9 +60,9 @@ class WEBTokenizer(TokenizerI):
         if self.tones:
             text = strip_tones(text)
 
-        words = wordpunct_tokenize(text) # tokenize the text into words and punctuation
+        words = wordpunct_tokenize(text)  # tokenize the text into words and punctuation
         n = len(words)
-        L = [] # all possibles words-expressions combinaisons
+        L = []  # all possibles words-expressions combinaisons
 
         for start_idx in range(n):
             max_end = min(start_idx + self.lexicon.max_length, n)
@@ -67,12 +70,14 @@ class WEBTokenizer(TokenizerI):
                 sub_sequence = tuple(words[start_idx:end_idx])
 
                 if len(sub_sequence) == 1 or sub_sequence in self.lexicon.expressions:
-                    L.append({
-                        "start": start_idx,
-                        "end": end_idx,
-                        "word": sub_sequence,
-                        "order": len(sub_sequence),
-                    })
+                    L.append(
+                        {
+                            "start": start_idx,
+                            "end": end_idx,
+                            "word": sub_sequence,
+                            "order": len(sub_sequence),
+                        }
+                    )
 
         # check high-order words or expressions
         L_hat = []
@@ -90,6 +95,7 @@ class WEBTokenizer(TokenizerI):
         # restore order
         L_hat.sort(key=lambda x: x["start"])
         return [self.sep.join(w["word"]) for w in L_hat]
+
 
 if __name__ == "__main__":
     lexicon = WEBLexicon()

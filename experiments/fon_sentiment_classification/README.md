@@ -2,12 +2,13 @@
 
 A simple baseline project for **sentiment analysis in Fon (Fongbe)**.
 
-This project builds a sentiment classification dataset from a parallel French–Fon corpus by annotating the French sentences and transferring the sentiment labels to their Fon translations. 
+This project builds a sentiment classification dataset from a parallel French–Fon corpus by annotating the French sentences and transferring the sentiment labels to their Fon translations.
 It also provides baseline machine learning models for sentiment classification.
 
 ### getting started
 
 Install the project dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -37,4 +38,3 @@ The current implementation includes two classical machine learning baselines: mu
 ### contributing
 
 Contributions are welcome. Feel free to open an issue to report bugs, suggest improvements, or discuss new ideas. Pull requests are also appreciated.
-

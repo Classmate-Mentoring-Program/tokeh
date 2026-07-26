@@ -5,7 +5,9 @@ https://huggingface.co/datasets/Shads229/french-fongbe-corpus
 
 @author: Victoria <https://github.com/IFRI-AI-Classes/XoNet/blob/main/src/ingestion/fetch_hf_datasets.py>
 """
+
 import csv
+
 from datasets import load_dataset
 
 # download the raw dataset from Hugging Face

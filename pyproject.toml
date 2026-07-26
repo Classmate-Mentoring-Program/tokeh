@@ -37,6 +37,8 @@ dependencies = [
   "tqdm>=4.68.4",
   "matplotlib>=3.11.0",
   "loguru>=0.7.3",
+  "optax>=0.2.8",
+  "pre-commit>=4.6.1",
 ]
 
 [project.optional-dependencies]

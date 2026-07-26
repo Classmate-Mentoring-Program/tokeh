@@ -1,5 +1,4 @@
-from xevi.utils.text import strip_tones, preprocess
-
+from xevi.utils.text import preprocess, strip_tones
 
 if __name__ == "__main__":
     text = "Đo bǐbɛ́mɛ ɔ́, 'hwenu' e Mawu ɖó wɛ̌kɛ́ ɔ́"
